@@ -359,11 +359,11 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="trapezium-rule">
 <h2>1. Trapezium Rule<a class="headerlink" href="#trapezium-rule" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>Trapezium Rule</strong> fits each subinterval with a trapezium and sums the areas of each trapezium to approximate the total integral. This approximation for the integral to an arbitrary function is shown in the following figure.</p>
-<img src="https://pythonnumericalmethods.berkeley.edu/_images/21.03.1-Trapezoid_integral.png" alt="Trapezoid integral" title="Illustration of the trapezoid integral procedure. The area below the curve is approximated by a summation of trapezoids that approximate the function." width="200"/>
+<img src="https://pythonnumericalmethods.berkeley.edu/_images/21.03.1-Trapezoid_integral.png" alt="Trapezoid integral" title="Illustration of the trapezoid integral procedure. The area below the curve is approximated by a summation of trapezoids that approximate the function." width="400"/>
 <p>For each subinterval, the Trapezium Rule computes the area of a trapezium with corners at <span class="math notranslate nohighlight">\((x_n, 0), (x_{n+1}, 0), (x_n, f(x_n))\)</span>, and <span class="math notranslate nohighlight">\((x_{n+1}, f(x_{n+1}))\)</span>, which is <span class="math notranslate nohighlight">\(h\frac{f(x_n) + f(x_{n+1})}{2}\)</span>. Thus, the Trapezium Rule approximates integrals according to the expression</p>
 <div class="math notranslate nohighlight">
 \[
-\int_a^b f(x) dx \approx \sum_{n=0}^{N-1} h\frac{f(x_n) + f(x_{n+1})}{2}.
+\int_a^b f(x)~{\rm d}x \approx \sum_{n=0}^{N-1} h\frac{f(x_n) + f(x_{n+1})}{2}.
 \]</div>
 <p>In the lectures you should have noted that the Trapezium Rule “double-counts” most of the terms in the series. To illustrate this fact, consider the expansion of the Trapezium Rule:</p>
 <div class="math notranslate nohighlight">
@@ -376,7 +376,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>This results in lots of calls to <span class="math notranslate nohighlight">\(f(x)\)</span> than is strictly necessary; we can be more computationally efficient using the following expression:</p>
 <div class="math notranslate nohighlight">
 \[
-\int_a^b f(x) dx \approx \frac{h}{2} \left(f(x_0) + 2 \left(\sum_{i=1}^{N-1} f(x_n)\right) + f(x_N)\right).
+\int_a^b f(x)~{\rm d}x \approx \frac{h}{2} \left(f(x_0) + 2 \left(\sum_{i=1}^{N-1} f(x_n)\right) + f(x_N)\right).
 \]</div>
 <p>In the lectures, we examined the Trapezium rule in Example 8.1 using the integral equation</p>
 <div class="math notranslate nohighlight">
@@ -464,11 +464,11 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Simpson’s Rule<a class="headerlink" href="#simpson-s-rule" title="Permalink to this headline">¶</a></h2>
 <p>We also learned about a second approximate method to approximate finite integrals; Simpon’s Rule.</p>
 <p>Consider <em>two</em> consecutive subintervals, <span class="math notranslate nohighlight">\([x_{n-1}, x_n]\)</span> and <span class="math notranslate nohighlight">\([x_n, x_{n+1}]\)</span>. <strong>Simpson’s Rule</strong> approximates the area under <span class="math notranslate nohighlight">\(f(x)\)</span> over these two subintervals by fitting a quadratic polynomial through the points <span class="math notranslate nohighlight">\((x_{n-1}, f(x_{n-1})), (x_n, f(x_n))\)</span>, and <span class="math notranslate nohighlight">\((x_{n+1}, f(x_{n+1}))\)</span>, and then integrating the quadratic exactly. The following shows this integral approximation for an arbitrary function.</p>
-<img src="https://pythonnumericalmethods.berkeley.edu/_images/21.04.1-Simpson_integral.png" alt="Simpsons integral" title="Illustration of the Simpson integral formula. Discretization points are grouped by three, and a parabola is fit between the three points. This can be done by a typical interpolation polynomial. The area under the curve is approximated by the area under the parabola." width="350"/>
+<img src="https://pythonnumericalmethods.berkeley.edu/_images/21.04.1-Simpson_integral.png" alt="Simpsons integral" title="Illustration of the Simpson integral formula. Discretization points are grouped by three, and a parabola is fit between the three points. This can be done by a typical interpolation polynomial. The area under the curve is approximated by the area under the parabola." width="550"/>
 <p>Quadratic polynomial approximation takes place over two sub-intervals. With some algebra and manipulation, and combining (integrating) various polynomials together, we arrive at the the formula</p>
 <div class="math notranslate nohighlight">
 \[
-\int_a^b f(x) dx \approx \frac{h}{3} \left[f(x_0)+4 \left(\sum_{n=1, n\  {\text{odd}}}^{N-1}f(x_n)\right)+2 \left(\sum_{n=2, n\  {\text{even}}}^{N-2}f(x_n)\right)+f(x_N)\right].
+\int_a^b f(x)~{\rm d}x \approx \frac{h}{3} \left[f(x_0)+4 \left(\sum_{n=1, n\  {\text{odd}}}^{N-1}f(x_n)\right)+2 \left(\sum_{n=2, n\  {\text{even}}}^{N-2}f(x_n)\right)+f(x_N)\right].
 \]</div>
 <p><strong>WARNING!</strong> Remember that Simpson’s Rule <strong>must</strong> be used for an even number of intervals and, therefore, an odd number of grid points.</p>
 <p>We can illustrate how Simpson’s rule works, first by recycling the simple problem attacked earlier using the trapezium rule. We have already defined all the necessary components (limits, step size and values of <span class="math notranslate nohighlight">\(x\)</span>) that we will need. Let’s first check that we’re okay to apply Simpson’s rule; to do this, we need to check if our total number of steps <span class="math notranslate nohighlight">\(n\)</span> is even:</p>

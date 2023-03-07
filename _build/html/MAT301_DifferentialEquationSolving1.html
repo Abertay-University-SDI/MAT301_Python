@@ -345,14 +345,14 @@ const thebe_selector_output = ".output, .cell_output"
 <p>A <strong>differential equation</strong> is a relationship between a function, <span class="math notranslate nohighlight">\(f(x)\)</span>, its independent variable, <span class="math notranslate nohighlight">\(x\)</span>, and any number of its derivatives. An <strong>ordinary differential equation</strong> or <strong>ODE</strong> is a differential equation where the independent variable, and therefore also the derivatives, is in one dimension. For our purposes, we can assume that an ODE can be written</p>
 <div class="math notranslate nohighlight">
 \[
-F\left(x, f(x), \frac{df(x)}{dx}, \frac{d^2f(x)}{dx^2}, \frac{d^3f(x)}{dx^3}, \ldots, \frac{d^{n-1}f(x)}{dx^{n-1}}\right) = \frac{d^{n}f(x)}{dx^{n}},
+F\left(x, f(x), \frac{{\rm d}f(x)}{{\rm d}x}, \frac{{\rm d}^2f(x)}{{\rm d}x^2}, \frac{{\rm d}^3f(x)}{{\rm d}x^3}, \ldots, \frac{{\rm d}^{n-1}f(x)}{{\rm d}x^{n-1}}\right) = \frac{{\rm d}^{n}f(x)}{{\rm d}x^{n}},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is an arbitrary function that incorporates one or all of the input arguments, and <span class="math notranslate nohighlight">\(n\)</span> is the <strong>order</strong> of the differential equation. This equation is referred to as an <strong><span class="math notranslate nohighlight">\(n^{\mathrm{th}}\)</span> order ODE</strong>.</p>
 <img src="https://pythonnumericalmethods.berkeley.edu/_images/22.01.01-pendulum.png" alt="Pendulum system" title="Pendulum system." width="200"/>
 <p>One example of an ODE describes the system in the above picture, containing a pendulum of length <span class="math notranslate nohighlight">\(l\)</span> supporting a mass, <span class="math notranslate nohighlight">\(m\)</span> at the end of its length. The angle the pendulum makes with the vertical axis over time, <span class="math notranslate nohighlight">\(\theta(t)\)</span>, in the presence of gravity, <span class="math notranslate nohighlight">\(g\)</span>, can be described by an equation, which is the ODE</p>
 <div class="math notranslate nohighlight">
 \[
-ml\frac{d^2\theta(t)}{dt^2} = -mg \sin(\theta(t)).
+ml\frac{{\rm d}^2\theta(t)}{{\rm d}t^2} = -mg \sin(\theta(t)).
 \]</div>
 <p>This equation can be derived by summing the forces in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> direction, and then converting to polar coordinates.</p>
 <p>We have learned several simple approaches to solving ODEs in lectures:</p>

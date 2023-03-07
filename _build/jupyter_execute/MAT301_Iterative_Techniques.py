@@ -263,7 +263,7 @@ print("no. of steps:", len(x), "     final x:", x[-1])
 # An illustration of how this linear approximation improves an initial guess is shown in the following figure.
 #  
 # 
-# <img src="https://pythonnumericalmethods.berkeley.edu/_images/19.04.01-Newton-step.png" alt="Newton Step" title="Illustration of Newton step for a smooth function, g(x)." width="200"/>
+# <img src="https://pythonnumericalmethods.berkeley.edu/_images/19.04.01-Newton-step.png" alt="Newton Step" title="Illustration of Newton step for a smooth function, g(x)." width="400"/>
 # 
 # Written generally, a **Newton step** computes an improved guess, $x_i$, using a previous guess $x_{i-1}$, and is given by the equation
 # 
