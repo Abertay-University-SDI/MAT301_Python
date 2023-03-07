@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/local/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.9/3.9.16/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+plt.style.use('seaborn-poster')
+fig, (ax1, ax2) = plt.subplots(2)
+fig.set_size_inches(10, 12)
+fig.suptitle('Approximate (Verlet) and Exact ODE Solution')
+ax1.plot(t[0:n + 1], x[0:n + 1], 'bo--', label='Approximate')
+ax1.plot(t, 8.0 * t - 0.1 * t * t, 'g', label='Exact')
+ax1.set(ylabel='x(t) [m]', xlabel='t [s]')
+ax1.grid()
+ax2.plot(t[0:n + 1], v[0:n + 1], 'bo--', label='Approximate')
+ax2.plot(t, 8.0 - 0.2 *  t, 'g', label='Exact')
+ax2.set(ylabel='v(t) [m/s]', xlabel='t [s]')
+ax2.grid()
+ax2.legend(loc='best')
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_51523/3827156806.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m [0mfig[0m[0;34m.[0m[0mset_size_inches[0m[0;34m([0m[0;36m10[0m[0;34m,[0m [0;36m12[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mfig[0m[0;34m.[0m[0msuptitle[0m[0;34m([0m[0;34m'Approximate (Verlet) and Exact ODE Solution'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 5[0;31m [0max1[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mt[0m[0;34m[[0m[0;36m0[0m[0;34m:[0m[0mn[0m [0;34m+[0m [0;36m1[0m[0;34m][0m[0;34m,[0m [0mx[0m[0;34m[[0m[0;36m0[0m[0;34m:[0m[0mn[0m [0;34m+[0m [0;36m1[0m[0;34m][0m[0;34m,[0m [0;34m'bo--'[0m[0;34m,[0m [0mlabel[0m[0;34m=[0m[0;34m'Approximate'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      6[0m [0max1[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mt[0m[0;34m,[0m [0;36m8.0[0m [0;34m*[0m [0mt[0m [0;34m-[0m [0;36m0.1[0m [0;34m*[0m [0mt[0m [0;34m*[0m [0mt[0m[0;34m,[0m [0;34m'g'[0m[0;34m,[0m [0mlabel[0m[0;34m=[0m[0;34m'Exact'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0max1[0m[0;34m.[0m[0mset[0m[0;34m([0m[0mylabel[0m[0;34m=[0m[0;34m'x(t) [m]'[0m[0;34m,[0m [0mxlabel[0m[0;34m=[0m[0;34m't [s]'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'n' is not defined
+NameError: name 'n' is not defined
+

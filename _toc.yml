@@ -1,0 +1,13 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: MAT301_Python_Intro.ipynb
+- file: MAT301_Iterative_Techniques.ipynb
+- file: MAT301_Numerical_Integration.ipynb
+- file: MAT301_DifferentialEquationSolving1.ipynb
+- file: MAT301_DifferentialEquationSolving2.ipynb
+- file: MAT301_DifferentialEquationSolving3.ipynb
+- file: outro.md
