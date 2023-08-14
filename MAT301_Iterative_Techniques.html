@@ -263,8 +263,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iteration-using-loops">
-   Iteration Using Loops
+  <a class="reference internal nav-link" href="#looping-simple-iteration-in-python">
+   Looping Simple Iteration in Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -320,8 +320,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iteration-using-loops">
-   Iteration Using Loops
+  <a class="reference internal nav-link" href="#looping-simple-iteration-in-python">
+   Looping Simple Iteration in Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -350,7 +350,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="iterative-solutions-to-equations">
 <h1>Iterative Solutions to Equations<a class="headerlink" href="#iterative-solutions-to-equations" title="Permalink to this headline">¶</a></h1>
-<p>Notebook to implement iterative techinques elements of Abertay University undergrad course MAT301 (JT, 2022).</p>
+<p>The first numerical technique we will explore are algorithms which find zeros: these are commonly called <strong>root-finding</strong> algorithms.</p>
 <div class="section" id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
 <p>The roots of a function are locations/values which make that function equal zero.
@@ -361,8 +361,8 @@ As the name suggests, the roots of a function are often one of the most importan
 \[
 x_r=\frac{-b\pm\sqrt{b^2-4ac}}{2a},
 \]</div>
-<p>evaluates the root(s) of the function, <span class="math notranslate nohighlight">\(x_r\)</span>, exactly (noting that there may be zero, one or two real solutions of this equation). The quadratic formula is a rare example of root-finding with a simple solution; most other types of function require novel ways to identify roots. As computational power has significantly grown in recent years, so too have iterative ways to identify roots which take advantage of computational resources and procedures.</p>
-<p>We will here discuss several iterative techinques to identify roots of equations. When testing some of these tools, we may use quadratic functions, in order to compare exact and approximate solutions.</p>
+<p>evaluates the root(s) of the function, <span class="math notranslate nohighlight">\(x_r\)</span>, exactly (noting that there may be zero, one or two real solutions of this equation). The quadratic formula is a rare example of root-finding with a simple solution, and can only be applied to equations which are <em>quadratic</em> (i.e. whose highest power in <span class="math notranslate nohighlight">\(x\)</span> is two, <span class="math notranslate nohighlight">\(x^2\)</span>); most other types of function require novel ways to identify roots. As computational power has significantly grown in recent years, so too have iterative ways to identify roots which take advantage of computational resources and procedures.</p>
+<p>We will here discuss several iterative techinques to identify roots of equations. We will often use quadratic functions to test these tools: we already have an exact analytical way to solve these problems, so this makes a good way to test our numerical approaches and examine how accurate and efficient they are.</p>
 <div class="section" id="setting-up-libraries">
 <h3>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h3>
 <p>As always, we’ll make use of some clever Python tools for plotting and maths, so our first step is to load in the libraries that store these tools:</p>
@@ -387,12 +387,15 @@ x_r=\frac{-b\pm\sqrt{b^2-4ac}}{2a},
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
 
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3.1</span> -&gt; <span class=" -Color -Color-Green">23.0.1</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3.1</span> -&gt; <span class=" -Color -Color-Green">23.2.1</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>(Note that the termcolor package, used to change the font color of some output, doesn’t appear to work in Colab. This doesn’t really matter, as I was just using it to highlight some specific values).</p>
 </div>
 </div>
 <div class="section" id="simple-iteration">
@@ -549,8 +552,8 @@ F_1(x)=\frac{1}{3}\left(x^2+1\right)~~~~{\rm{and}}~~~~ F_2(x)=3-\frac{1}{x}.
 </div>
 <p>We can see from this that we would only expect convergence using <span class="math notranslate nohighlight">\(F_1\)</span> when <span class="math notranslate nohighlight">\(x=1\)</span> and <span class="math notranslate nohighlight">\(F_2\)</span> when <span class="math notranslate nohighlight">\(x=3\)</span>.</p>
 </div>
-<div class="section" id="iteration-using-loops">
-<h2>Iteration Using Loops<a class="headerlink" href="#iteration-using-loops" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="looping-simple-iteration-in-python">
+<h2>Looping Simple Iteration in Python<a class="headerlink" href="#looping-simple-iteration-in-python" title="Permalink to this headline">¶</a></h2>
 <p>So far, we’ve effectively only used Python as a simple calculator. Python (and other languages) are far more powerful and can potentially check the derivative for convergence/divergence each time an iteration occurs. We can also build in a test of the difference between the latest iteration and previous values in order to not perform the calculation too many times. One could, in principle, combine all of these steps together in the following way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -602,9 +605,7 @@ no. of steps: 11      final x: 0.38196810192991765
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>divergent
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no. of steps: 1      final x: 3.0
+no. of steps: 1      final x: 3.0
 </pre></div>
 </div>
 </div>
@@ -641,15 +642,16 @@ no. of steps: 9      final x: 2.6180327868852458
 <div class="section" id="newton-raphson-iteration">
 <h2>Newton-Raphson Iteration<a class="headerlink" href="#newton-raphson-iteration" title="Permalink to this headline">¶</a></h2>
 <p>Newton-Raphson (also sometimes known as Newton’s method) is an iterative technique which rapidly approximates the roots of a real-valued function. It is fast and efficient, yet relatively easy to understand and is in common use in many different practical applications.</p>
-<p>The function we want to work with, <span class="math notranslate nohighlight">\(f(x)\)</span>, must be smooth and continuous; let us define <span class="math notranslate nohighlight">\(x_r\)</span> as an unknown root of <span class="math notranslate nohighlight">\(f(x)\)</span>. We could make an initial guess <span class="math notranslate nohighlight">\(x_0\)</span> for the value of <span class="math notranslate nohighlight">\(x_r\)</span>. Unless <span class="math notranslate nohighlight">\(x_0\)</span> is a very lucky guess, <span class="math notranslate nohighlight">\(f(x_0)\)</span> will not be a root. If we don’t find the root, we want our next guess, <span class="math notranslate nohighlight">\(x_1\)</span>, to be an improvement on <span class="math notranslate nohighlight">\(x_0\)</span> (i.e., closer to <span class="math notranslate nohighlight">\(x_r\)</span> than <span class="math notranslate nohighlight">\(x_0\)</span>). If we assume that <span class="math notranslate nohighlight">\(x_0\)</span> is “close enough” to <span class="math notranslate nohighlight">\(x_r\)</span>, then we can improve upon it by taking the linear approximation of <span class="math notranslate nohighlight">\(f(x)\)</span> around <span class="math notranslate nohighlight">\(x_0\)</span>, which is a line, and finding the intersection of this line with the x-axis. Written out, the linear approximation of <span class="math notranslate nohighlight">\(f(x)\)</span> around <span class="math notranslate nohighlight">\(x_0\)</span> is <span class="math notranslate nohighlight">\(f(x) \approx f(x_0) + f^{\prime}(x_0)(x-x_0)\)</span>. Using this approximation, we find <span class="math notranslate nohighlight">\(x_1\)</span> such that <span class="math notranslate nohighlight">\(f(x_1) = 0\)</span>. Plugging these values into the linear approximation results in the equation</p>
+<p>The function we want to work with, <span class="math notranslate nohighlight">\(f(x)\)</span>, must be smooth and continuous; let us define <span class="math notranslate nohighlight">\(x_r\)</span> as an unknown root of <span class="math notranslate nohighlight">\(f(x)\)</span>. We could make an initial guess <span class="math notranslate nohighlight">\(x_0\)</span> for the value of <span class="math notranslate nohighlight">\(x_r\)</span>. Unless we make a very lucky guess, <span class="math notranslate nohighlight">\(f(x_0)\)</span> will not be a root. If we don’t find the root, we want our next guess, <span class="math notranslate nohighlight">\(x_1\)</span>, to be an improvement on <span class="math notranslate nohighlight">\(x_0\)</span> (i.e., closer to <span class="math notranslate nohighlight">\(x_r\)</span> than <span class="math notranslate nohighlight">\(x_0\)</span>). If we assume that <span class="math notranslate nohighlight">\(x_0\)</span> is “close enough” to <span class="math notranslate nohighlight">\(x_r\)</span>, then we can improve upon it by taking the linear approximation of <span class="math notranslate nohighlight">\(f(x)\)</span> around <span class="math notranslate nohighlight">\(x_0\)</span>, which is a line, and finding the intersection of this line with the x-axis. Written out, the linear approximation of <span class="math notranslate nohighlight">\(f(x)\)</span> around <span class="math notranslate nohighlight">\(x_0\)</span> is <span class="math notranslate nohighlight">\(f(x) \approx f(x_0) + f^{\prime}(x_0)(x-x_0)\)</span>. Using this approximation, we find <span class="math notranslate nohighlight">\(x_1\)</span> such that <span class="math notranslate nohighlight">\(f(x_1) = 0\)</span>. Plugging these values into the linear approximation results in the equation</p>
 <div class="math notranslate nohighlight">
 \[
 0 = f(x_0) + f^{\prime}(x_0)(x_1-x_0),
 \]</div>
-<p>which when solved for <span class="math notranslate nohighlight">\(x_1\)</span> is
-$<span class="math notranslate nohighlight">\(
+<p>which when solved for <span class="math notranslate nohighlight">\(x_1\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
 x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}.
-\)</span>$</p>
+\]</div>
 <p>An illustration of how this linear approximation improves an initial guess is shown in the following figure.</p>
 <img src="https://pythonnumericalmethods.berkeley.edu/_images/19.04.01-Newton-step.png" alt="Newton Step" title="Illustration of Newton step for a smooth function, g(x)." width="400"/>
 <p>Written generally, a <strong>Newton step</strong> computes an improved guess, <span class="math notranslate nohighlight">\(x_i\)</span>, using a previous guess <span class="math notranslate nohighlight">\(x_{i-1}\)</span>, and is given by the equation</p>
