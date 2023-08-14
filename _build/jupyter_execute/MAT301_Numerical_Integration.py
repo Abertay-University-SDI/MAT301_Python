@@ -2,14 +2,14 @@
 # coding: utf-8
 
 # # Numerical Integration
-# Notebook to implement Euler, Midpoint and Euler Trapezium methods to solve differential equations. Designed to support Abertay University undergrad course MAT301 (JT, 2022).
+# The next useful mathematical approach that can be applied numerically is **numerical integration**.
 
 # ## Motivation
 # Many laws of motion (for example Newton's Laws) require differentiation or integration in order to extract different information. For example: integrating a displacement in time yields a velocity. The ability to integrate functions between two points is extremely useful in video games programming.
 # 
 # Given a function $f(x)$, we want to approximate the integral of $f(x)$ over the total **interval**, $[a,b]$. The following figure illustrates the area this generates. 
 # 
-# <img src="https://pythonnumericalmethods.berkeley.edu/_images/21.01.1-Illustration_integral.png" alt="Illustration integral" title="Illustration of the integral. The integral from a to b of the function f is the area below the curve (shaded in grey)." width="200"/>
+# <img src="https://pythonnumericalmethods.berkeley.edu/_images/21.01.1-Illustration_integral.png" alt="Illustration integral" title="Illustration of the integral. The integral from a to b of the function f is the area below the curve (shaded in grey)." width="400"/>
 # 
 # To achieve this, we assume that the interval is broken up ("discretised"). Our independent variable, $x$, will comprise $N+1$ points with spacing, $h = \dfrac{b - a}{n}$. 
 # 
@@ -156,7 +156,7 @@ if N % 2:
     print('WARNING: N EVEN - Simpsons rule will FAIL') # Odd 
 
 
-# No warning appeared so we're good to go. All we need to do is sum the elements that we've calculated according to the Simpson's rule formula. We can be a bit clever here, and let Python decide which numbers are odd and which are even (by picking every second element in cleverly chosen ranges which omit $f_0$ and $f_n$ (used elsewhere in the formula.
+# No warning appeared so we're good to go. All we need to do is sum the elements that we've calculated according to the Simpson's rule formula. We can be a bit clever here, and let Python decide which numbers are odd and which are even (by picking every second element in cleverly chosen ranges which omit $f_0$ and $f_n$) at add on the remaining elements according to the formula.
 
 # In[8]:
 

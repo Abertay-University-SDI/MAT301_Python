@@ -64,7 +64,9 @@ import matplotlib.gridspec as gridspec
 # 
 # A second complexity is that the velocity calculation requires knowledge of the **next** displacement in time, so calculation of this lags behind the displacement calculation. If the velocity is required after 5 steps, we would need to calculate the displacement over 6 steps to achieve the required solution.
 
-# Lets use the algorithm to tackle Example 9.4 from the Lecture notes. In this example, a mass of $2$kg is propelled along a rough horizontal table which exerts a resistance of $0.4$N. The initial velocity of the mass is $8{\rm{ms}}^{-1}$. We are to use the Verlet algorithm with a step size of $h=0.1$ to approximate the velocity and displacement of the mass after $0.5$s, assuming $x\left(t=0\right)=0$.
+# ## Example 9.4 ##
+# 
+# To see the algorithm in action, we will re-use Example 9.4 from the Lecture notes. In this example, a mass of $2$kg is propelled along a rough horizontal table which exerts a resistance of $0.4$N. The initial velocity of the mass is $8{\rm{ms}}^{-1}$. We are to use the Verlet algorithm with a step size of $h=0.1$ to approximate the velocity and displacement of the mass after $0.5$s, assuming $x\left(t=0\right)=0$.
 # 
 # My first step is to determine the acceleration at a given time. In this case the acceleration (force per unit mass) is constant, so we'll store acceleration as a constant:
 
@@ -110,11 +112,12 @@ print("t(N):",t[N],", x(N):", x[N],", v(N):", v[N])
 
 # We can see that the desired solution at $t=0.5$ is given by the final element in the list of $x$ and $v$, and matches the values we calculated in the lectures.
 # 
-# This equation of motion also has exact solutions (the acceleration is constant so we can use $v=u+at$ and $s=ut+\frac{1}{2}at^2$).  The exact solutions are:
+# This equation of motion also has exact solutions: the acceleration is constant so we can use $v=u+at$ and $s=ut+\frac{1}{2}at^2$. From these, we should recover:
+# 
 # $$
 # \begin{align}
-#  v(t)&=&8-0.2t \\
-#  x(t)&=&8t-0.1t^2
+#  v(t)&=8-0.2t \\
+#  x(t)&=8t-0.1t^2
 # \end{align}
 # $$
 # 

@@ -44,9 +44,11 @@
 # To illustrate how this method can be implemented numerically, we will apply it to three initial value problems. These happen to be models of population growth over time, but could in reality be for any type of ordinary differential equation (ODE, or indeed for a system of several coupled ODEs). I have selected these equations because they are broadly related, but gradually increase in complexity. The equations which we will investigate are the following:
 # ### 1. Linear Population Equation
 # Our first ODE will be linear:
+# 
 # $$
 # y^{'}=0.1y, \ \ (2000 \leq t \leq 2020), 
 # $$
+# 
 # with the initial condition,
 # 
 # $$
@@ -104,8 +106,8 @@ import matplotlib.gridspec as gridspec
 # h=\frac{b-a}{N}.
 # $$
 # 
-# 
 # Here, the interval is $2000\leq t \leq 2020,$ 
+# 
 # $$
 # h=\frac{2020-2000}{200}=0.1.
 # $$
@@ -117,6 +119,7 @@ import matplotlib.gridspec as gridspec
 # $$
 # 
 # which we can generalise to
+# 
 # $$ 
 # t_n=2000+0.1n, \ \ \ n=0,1,...,200.
 # $$
@@ -177,6 +180,7 @@ def l_fun(x,y):
 # $$
 # 
 # Subsequent coefficients are more complicated to evaluate mathematically, e.g. $k_2$:
+# 
 # $$
 # \begin{align}
 # k_2&=f\left(x_n+\frac{h}{2},y_n+\frac{h}{2}k_1\right)=0.1\left(y_n+0.05k_1\right) \\
@@ -324,11 +328,13 @@ for n in range (0, N):
 # $$
 # 
 # we can therefore find:
+# 
 # $$
 # y(t)=\left({5e^{\dfrac{-(t+c)}{5}}+0.05}\right)^{-1}, 
 # $$
 # 
 # with a contant of integration 
+# 
 # $$
 # c=-5\ln{\left(\frac{0.14\exp{(400)}}{6}\right)}.
 # $$
@@ -371,13 +377,16 @@ df
 # $$ 
 # y^{'}=0.2y-0.01y^2+\sin(2\pi t), \ \ (2000 \leq t \leq 2020), 
 # $$
+# 
 # with the initial condition,
+# 
 # $$
 # y(2000)=6.
 # $$
 # 
 # ### Implementing RK4
 # As with the previous cases, lets express the right hand side of the ODE as a function
+# 
 # $$
 # f_3(x,y)=0.2y-0.01y^2+\sin(2\pi x),
 # $$

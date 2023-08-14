@@ -3,7 +3,7 @@
 
 # # Iterative Solutions to Equations
 # 
-# Notebook to implement iterative techinques elements of Abertay University undergrad course MAT301 (JT, 2022).
+# The first numerical technique we will explore are algorithms which find zeros: these are commonly called **root-finding** algorithms. 
 
 # ## Motivation
 # 
@@ -18,11 +18,9 @@
 # x_r=\frac{-b\pm\sqrt{b^2-4ac}}{2a},
 # $$
 # 
-# evaluates the root(s) of the function, $x_r$, exactly (noting that there may be zero, one or two real solutions of this equation). The quadratic formula is a rare example of root-finding with a simple solution; most other types of function require novel ways to identify roots. As computational power has significantly grown in recent years, so too have iterative ways to identify roots which take advantage of computational resources and procedures.
+# evaluates the root(s) of the function, $x_r$, exactly (noting that there may be zero, one or two real solutions of this equation). The quadratic formula is a rare example of root-finding with a simple solution, and can only be applied to equations which are *quadratic* (i.e. whose highest power in $x$ is two, $x^2$); most other types of function require novel ways to identify roots. As computational power has significantly grown in recent years, so too have iterative ways to identify roots which take advantage of computational resources and procedures.
 # 
-# We will here discuss several iterative techinques to identify roots of equations. When testing some of these tools, we may use quadratic functions, in order to compare exact and approximate solutions.
-# 
-# 
+# We will here discuss several iterative techinques to identify roots of equations. We will often use quadratic functions to test these tools: we already have an exact analytical way to solve these problems, so this makes a good way to test our numerical approaches and examine how accurate and efficient they are.
 
 # #### Setting up Libraries
 # 
@@ -38,6 +36,8 @@ import sys
 get_ipython().system('{sys.executable} -m pip install termcolor')
 from termcolor import colored
 
+
+# (Note that the termcolor package, used to change the font color of some output, doesn't appear to work in Colab. This doesn't really matter, as I was just using it to highlight some specific values).
 
 # 
 # ## Simple Iteration 
@@ -176,7 +176,7 @@ for i in temp:
 
 # We can see from this that we would only expect convergence using $F_1$ when $x=1$ and $F_2$ when $x=3$.
 # 
-# ## Iteration Using Loops
+# ## Looping Simple Iteration in Python
 # 
 # So far, we've effectively only used Python as a simple calculator. Python (and other languages) are far more powerful and can potentially check the derivative for convergence/divergence each time an iteration occurs. We can also build in a test of the difference between the latest iteration and previous values in order to not perform the calculation too many times. One could, in principle, combine all of these steps together in the following way:
 
@@ -250,12 +250,14 @@ print("no. of steps:", len(x), "     final x:", x[-1])
 # 
 # Newton-Raphson (also sometimes known as Newton's method) is an iterative technique which rapidly approximates the roots of a real-valued function. It is fast and efficient, yet relatively easy to understand and is in common use in many different practical applications.
 # 
-# The function we want to work with, $f(x)$, must be smooth and continuous; let us define $x_r$ as an unknown root of $f(x)$. We could make an initial guess $x_0$ for the value of $x_r$. Unless $x_0$ is a very lucky guess, $f(x_0)$ will not be a root. If we don't find the root, we want our next guess, $x_1$, to be an improvement on $x_0$ (i.e., closer to $x_r$ than $x_0$). If we assume that $x_0$ is "close enough" to $x_r$, then we can improve upon it by taking the linear approximation of $f(x)$ around $x_0$, which is a line, and finding the intersection of this line with the x-axis. Written out, the linear approximation of $f(x)$ around $x_0$ is $f(x) \approx f(x_0) + f^{\prime}(x_0)(x-x_0)$. Using this approximation, we find $x_1$ such that $f(x_1) = 0$. Plugging these values into the linear approximation results in the equation
+# The function we want to work with, $f(x)$, must be smooth and continuous; let us define $x_r$ as an unknown root of $f(x)$. We could make an initial guess $x_0$ for the value of $x_r$. Unless we make a very lucky guess, $f(x_0)$ will not be a root. If we don't find the root, we want our next guess, $x_1$, to be an improvement on $x_0$ (i.e., closer to $x_r$ than $x_0$). If we assume that $x_0$ is "close enough" to $x_r$, then we can improve upon it by taking the linear approximation of $f(x)$ around $x_0$, which is a line, and finding the intersection of this line with the x-axis. Written out, the linear approximation of $f(x)$ around $x_0$ is $f(x) \approx f(x_0) + f^{\prime}(x_0)(x-x_0)$. Using this approximation, we find $x_1$ such that $f(x_1) = 0$. Plugging these values into the linear approximation results in the equation
 # 
 # $$
 # 0 = f(x_0) + f^{\prime}(x_0)(x_1-x_0),
 # $$
+# 
 # which when solved for $x_1$ is
+# 
 # $$
 # x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}.
 # $$

@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# 
 # # Differential Equation Solving 1
-# 
-# Notebook to implement Euler, Midpoint and Euler Trapezium methods to solve differential equations. Designed to support Abertay University undergrad course MAT301 (JT, 2022).
+# Many physical laws governing natural behaviour take the form of differential equations. These are often complicated, coupled equations where the behaviour of quantities in space and time depend on others. While some have analytical solutions, often it is quicker and easier to apply numerical tools to obtain approximate solutions.
 
 # ## Motivation
 # A **differential equation** is a relationship between a function, $f(x)$, its independent variable, $x$, and any number of its derivatives. An **ordinary differential equation** or **ODE** is a differential equation where the independent variable, and therefore also the derivatives, is in one dimension. For our purposes, we can assume that an ODE can be written
@@ -64,11 +62,13 @@ import matplotlib.pyplot as plt
 # S(t_{j+1}) = S(t_j) + hF(t_j, S(t_j)).
 # $$
 # 
-# This formula is called the **Explicit Euler Formula**, and allows us to approximate the state at $S(t_{j+1})$ given the state at $S(t_j)$. Starting from a given initial value of $S_0 = S(t_0)$, we can use this formula to integrate the states up to $S(t_f)$; these $S(t)$ values are then an approximation for the solution of the differential equation. The Explicit Euler formula is the simplest and most intuitive method for solving initial value problems. At any state $(t_j, S(t_j))$ it uses $F$ at that state to "point" toward the next state and then moves in that direction a distance of $h$. Although there are more sophisticated and accurate methods for solving these problems, they all have the same fundamental structure. As such, we enumerate explicitly the steps for solving an initial value problem using the Explicit Euler formula.
+# This formula is called the **Explicit Euler Formula**, and allows us to approximate the state at $S(t_{j+1})$ given the state at $S(t_j)$. Starting from a given initial value of $S_0 = S(t_0)$, we can use this formula to integrate the states up to $S(t_f)$; these $S(t)$ values are then an approximation for the solution of the differential equation. The Euler formula is the simplest and most intuitive method for solving initial value problems. At any state $(t_j, S(t_j))$ it uses $F$ at that state to "point" toward the next state and then moves in that direction a distance of $h$. Although there are more sophisticated and accurate methods for solving these problems, they all have the same fundamental structure. As such, we enumerate explicitly the steps for solving an initial value problem using the Explicit Euler formula.
 # 
 # <img src="https://pythonnumericalmethods.berkeley.edu/_images/22.03.01-Euler-method-illustration.png" alt="explicit Euler" title="The illustration of the explicit Euler method." width="500"/>
 
-# Lets go ahead and see this in action, using the equation and question posed in from Example 9.1 in the lectures:
+# ## Example 9.1 ##
+# 
+# To see this in action, we will use the equation and question posed in from Example 9.1 in the lectures:
 # 
 # $$
 # \frac{{\rm{d}}y}{{\rm{d}}t}=xy,
@@ -176,10 +176,11 @@ plt.show()
 
 # ## Midpoint method
 # 
-# In the lectures, we were introduced to a more accurate scheme, the Midpoint method. This essentially estimates the gradient of the tangent at the midpoint between steps $x_n+\frac{1}{2}h$, which lies halfway between $x_n$ and $x_{n+1}$. Using Euler's method, we then determine \begin{equation}y_{n+1}=y_n+hk_2,\end{equation}where
+# In the lectures, we were introduced to a more accurate scheme, the Midpoint method. This essentially estimates the gradient of the tangent at the midpoint between steps $x_n+\frac{1}{2}h$, which lies halfway between $x_n$ and $x_{n+1}$. Using Euler's method, we then determine $y_{n+1}=y_n+hk_2,$ where
+# 
 # $$
 # \begin{align}
-# k_1&=f(x_n,y_n) \\
+# k_1&=f(x_n,y_n), \\
 # k_2&=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1).
 # \end{align}
 # $$
@@ -227,10 +228,11 @@ plt.show()
 # where $y_{n+1}^p$ is an initial prediction. We then use the derivative prediction, $y_{n+1}'^p$, from
 # 
 # $$
-# y_{n+1}'^p=f\left(x_{n+1}, y_{n+1}^p\right)
+# y_{n+1}'^p=f\left(x_{n+1}, y_{n+1}^p\right),
 # $$
 # 
 # to correct the value
+# 
 # $$
 # y_{n+1}^c=y_n+\frac{h}{2}\left(y_n'+y_{n+1}'^p\right).
 # $$
