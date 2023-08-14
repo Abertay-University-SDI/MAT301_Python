@@ -263,11 +263,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-9-1">
-   Example 9.1
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#midpoint-method">
    Midpoint method
   </a>
@@ -319,11 +314,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#euler-s-method">
    Euler’s method
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-9-1">
-   Example 9.1
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -406,10 +396,7 @@ S(t_{j+1}) = S(t_j) + (t_{j+1} - t_j)\frac{dS(t_j)}{dt},
 S(t_{j+1}) = S(t_j) + hF(t_j, S(t_j)).
 \]</div>
 <p>This formula is called the <strong>Explicit Euler Formula</strong>, and allows us to approximate the state at <span class="math notranslate nohighlight">\(S(t_{j+1})\)</span> given the state at <span class="math notranslate nohighlight">\(S(t_j)\)</span>. Starting from a given initial value of <span class="math notranslate nohighlight">\(S_0 = S(t_0)\)</span>, we can use this formula to integrate the states up to <span class="math notranslate nohighlight">\(S(t_f)\)</span>; these <span class="math notranslate nohighlight">\(S(t)\)</span> values are then an approximation for the solution of the differential equation. The Explicit Euler formula is the simplest and most intuitive method for solving initial value problems. At any state <span class="math notranslate nohighlight">\((t_j, S(t_j))\)</span> it uses <span class="math notranslate nohighlight">\(F\)</span> at that state to “point” toward the next state and then moves in that direction a distance of <span class="math notranslate nohighlight">\(h\)</span>. Although there are more sophisticated and accurate methods for solving these problems, they all have the same fundamental structure. As such, we enumerate explicitly the steps for solving an initial value problem using the Explicit Euler formula.</p>
-<img src="https://pythonnumericalmethods.berkeley.edu/_images/22.03.01-Euler-method-illustration.png" alt="explicit Euler" title="The illustration of the explicit Euler method." width="500"/></div>
-<div class="section" id="example-9-1">
-<h2>Example 9.1<a class="headerlink" href="#example-9-1" title="Permalink to this headline">¶</a></h2>
-<p>To see this in action, we will use the equation and question posed in from Example 9.1 in the lectures:</p>
+<img src="https://pythonnumericalmethods.berkeley.edu/_images/22.03.01-Euler-method-illustration.png" alt="explicit Euler" title="The illustration of the explicit Euler method." width="500"/><p>Lets go ahead and see this in action, using the equation and question posed in from Example 9.1 in the lectures:</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{{\rm{d}}y}{{\rm{d}}t}=xy,
@@ -536,14 +523,13 @@ x= [0.  0.1 0.2 0.3 0.4 0.5]
 </div>
 <div class="section" id="midpoint-method">
 <h2>Midpoint method<a class="headerlink" href="#midpoint-method" title="Permalink to this headline">¶</a></h2>
-<p>In the lectures, we were introduced to a more accurate scheme, the Midpoint method. This essentially estimates the gradient of the tangent at the midpoint between steps <span class="math notranslate nohighlight">\(x_n+\frac{1}{2}h\)</span>, which lies halfway between <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(x_{n+1}\)</span>. Using Euler’s method, we then determine <span class="math notranslate nohighlight">\(y_{n+1}=y_n+hk_2,\)</span> where</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<p>In the lectures, we were introduced to a more accurate scheme, the Midpoint method. This essentially estimates the gradient of the tangent at the midpoint between steps <span class="math notranslate nohighlight">\(x_n+\frac{1}{2}h\)</span>, which lies halfway between <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(x_{n+1}\)</span>. Using Euler’s method, we then determine \begin{equation}y_{n+1}=y_n+hk_2,\end{equation}where
+$<span class="math notranslate nohighlight">\(
 \begin{align}
-k_1&amp;=f(x_n,y_n), \\
+k_1&amp;=f(x_n,y_n) \\
 k_2&amp;=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1).
 \end{align}
-\end{split}\]</div>
+\)</span>$</p>
 <p>This looks a bit weird, but all this means is that we start to evaluate the function not only at the grid point values, but also now at different locations in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>Let’s go ahead and implement this, in exactly the same manner as the previous method:</p>
 <div class="cell docutils container">
@@ -585,13 +571,12 @@ y_{n+1}^p=y_n+h y_n',
 <p>where <span class="math notranslate nohighlight">\(y_{n+1}^p\)</span> is an initial prediction. We then use the derivative prediction, <span class="math notranslate nohighlight">\(y_{n+1}'^p\)</span>, from</p>
 <div class="math notranslate nohighlight">
 \[
-y_{n+1}'^p=f\left(x_{n+1}, y_{n+1}^p\right),
+y_{n+1}'^p=f\left(x_{n+1}, y_{n+1}^p\right)
 \]</div>
-<p>to correct the value</p>
-<div class="math notranslate nohighlight">
-\[
+<p>to correct the value
+$<span class="math notranslate nohighlight">\(
 y_{n+1}^c=y_n+\frac{h}{2}\left(y_n'+y_{n+1}'^p\right).
-\]</div>
+\)</span>$</p>
 <p>Once again, we can apply this solution to the ODE problem from earlier in the following way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

@@ -263,11 +263,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-9-4">
-   Example 9.4
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#further-work">
    Further work
   </a>
@@ -307,11 +302,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simple-attempt-euler">
    Simple attempt: Euler
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-9-4">
-   Example 9.4
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -385,10 +375,7 @@ v_n=x_n'=\frac{1}{2h}\left(x_{n+1}-x_{n-1}\right).
 <p>This ensures that the error does not accumulate, since the velocity calculation is recalculated from a more accurate displacement calculation at each step.</p>
 <p>One additional complexity is that this model is not self-starting: each new displacement value requires two previous values, which is an issue for an initial value problem. One common approach is to use a single Euler step to calculate the first displacement, with subsequent values using the Verlet algorithm.</p>
 <p>A second complexity is that the velocity calculation requires knowledge of the <strong>next</strong> displacement in time, so calculation of this lags behind the displacement calculation. If the velocity is required after 5 steps, we would need to calculate the displacement over 6 steps to achieve the required solution.</p>
-</div>
-<div class="section" id="example-9-4">
-<h2>Example 9.4<a class="headerlink" href="#example-9-4" title="Permalink to this headline">¶</a></h2>
-<p>To see the algorithm in action, we will re-use Example 9.4 from the Lecture notes. In this example, a mass of <span class="math notranslate nohighlight">\(2\)</span>kg is propelled along a rough horizontal table which exerts a resistance of <span class="math notranslate nohighlight">\(0.4\)</span>N. The initial velocity of the mass is <span class="math notranslate nohighlight">\(8{\rm{ms}}^{-1}\)</span>. We are to use the Verlet algorithm with a step size of <span class="math notranslate nohighlight">\(h=0.1\)</span> to approximate the velocity and displacement of the mass after <span class="math notranslate nohighlight">\(0.5\)</span>s, assuming <span class="math notranslate nohighlight">\(x\left(t=0\right)=0\)</span>.</p>
+<p>Lets use the algorithm to tackle Example 9.4 from the Lecture notes. In this example, a mass of <span class="math notranslate nohighlight">\(2\)</span>kg is propelled along a rough horizontal table which exerts a resistance of <span class="math notranslate nohighlight">\(0.4\)</span>N. The initial velocity of the mass is <span class="math notranslate nohighlight">\(8{\rm{ms}}^{-1}\)</span>. We are to use the Verlet algorithm with a step size of <span class="math notranslate nohighlight">\(h=0.1\)</span> to approximate the velocity and displacement of the mass after <span class="math notranslate nohighlight">\(0.5\)</span>s, assuming <span class="math notranslate nohighlight">\(x\left(t=0\right)=0\)</span>.</p>
 <p>My first step is to determine the acceleration at a given time. In this case the acceleration (force per unit mass) is constant, so we’ll store acceleration as a constant:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -439,14 +426,13 @@ t= [0.  0.1 0.2 0.3 0.4 0.5]
 </div>
 </div>
 <p>We can see that the desired solution at <span class="math notranslate nohighlight">\(t=0.5\)</span> is given by the final element in the list of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(v\)</span>, and matches the values we calculated in the lectures.</p>
-<p>This equation of motion also has exact solutions: the acceleration is constant so we can use <span class="math notranslate nohighlight">\(v=u+at\)</span> and <span class="math notranslate nohighlight">\(s=ut+\frac{1}{2}at^2\)</span>. From these, we should recover:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<p>This equation of motion also has exact solutions (the acceleration is constant so we can use <span class="math notranslate nohighlight">\(v=u+at\)</span> and <span class="math notranslate nohighlight">\(s=ut+\frac{1}{2}at^2\)</span>).  The exact solutions are:
+$<span class="math notranslate nohighlight">\(
 \begin{align}
- v(t)&amp;=8-0.2t \\
- x(t)&amp;=8t-0.1t^2
+ v(t)&amp;=&amp;8-0.2t \\
+ x(t)&amp;=&amp;8t-0.1t^2
 \end{align}
-\end{split}\]</div>
+\)</span>$</p>
 <p>Lets compare our numerical approximation with the true solutions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

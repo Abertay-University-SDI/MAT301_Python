@@ -538,12 +538,11 @@ k_3&amp;=f\left(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2\right),~k_4=f\left(x_n+h, 
 <p>To illustrate how this method can be implemented numerically, we will apply it to three initial value problems. These happen to be models of population growth over time, but could in reality be for any type of ordinary differential equation (ODE, or indeed for a system of several coupled ODEs). I have selected these equations because they are broadly related, but gradually increase in complexity. The equations which we will investigate are the following:</p>
 <div class="section" id="linear-population-equation">
 <h3>1. Linear Population Equation<a class="headerlink" href="#linear-population-equation" title="Permalink to this headline">¶</a></h3>
-<p>Our first ODE will be linear:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>Our first ODE will be linear:
+$<span class="math notranslate nohighlight">\(
 y^{'}=0.1y, \ \ (2000 \leq t \leq 2020), 
-\]</div>
-<p>with the initial condition,</p>
+\)</span>$
+with the initial condition,</p>
 <div class="math notranslate nohighlight">
 \[
 y(2000)=6.
@@ -601,21 +600,19 @@ y(2000)=6.
 \[
 h=\frac{b-a}{N}.
 \]</div>
-<p>Here, the interval is <span class="math notranslate nohighlight">\(2000\leq t \leq 2020,\)</span></p>
-<div class="math notranslate nohighlight">
-\[
+<p>Here, the interval is <span class="math notranslate nohighlight">\(2000\leq t \leq 2020,\)</span>
+$<span class="math notranslate nohighlight">\(
 h=\frac{2020-2000}{200}=0.1.
-\]</div>
+\)</span>$</p>
 <p>This gives the 201 discrete points:</p>
 <div class="math notranslate nohighlight">
 \[ 
 t_0=2000, \ t_1=2000.1, \ ... t_{200}=2020, 
 \]</div>
-<p>which we can generalise to</p>
-<div class="math notranslate nohighlight">
-\[ 
+<p>which we can generalise to
+$<span class="math notranslate nohighlight">\( 
 t_n=2000+0.1n, \ \ \ n=0,1,...,200.
-\]</div>
+\)</span>$</p>
 <p>Let’s go ahead and set this range of <span class="math notranslate nohighlight">\(t\)</span> values as a list in Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -671,15 +668,14 @@ f(x,y)=0.1y.
 \[
 k_1=f\left(x_n,y_n\right)=0.1 y_n.
 \]</div>
-<p>Subsequent coefficients are more complicated to evaluate mathematically, e.g. <span class="math notranslate nohighlight">\(k_2\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<p>Subsequent coefficients are more complicated to evaluate mathematically, e.g. <span class="math notranslate nohighlight">\(k_2\)</span>:
+$<span class="math notranslate nohighlight">\(
 \begin{align}
 k_2&amp;=f\left(x_n+\frac{h}{2},y_n+\frac{h}{2}k_1\right)=0.1\left(y_n+0.05k_1\right) \\
 &amp;=0.1\left(y_n+0.05(0.1y_n)\right)=0.1y_n(1+0.005) \\
 &amp;=0.1y_n(1.005)=0.1005y_n.
 \end{align}
-\end{split}\]</div>
+\)</span>$</p>
 <p>This is a lot of mathematical effort to then plug into our calculators!</p>
 <p>The beauty of this method relies on making the computer to do the hard work for us! Now that we’ve defined a function to spit out values of <span class="math notranslate nohighlight">\(f(x,y)\)</span>, we can also evaluate <em>shifted values</em> of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> as input into that function to evaluate <span class="math notranslate nohighlight">\(k_1-k_4\)</span>, and hence the next iteration of the solution, <span class="math notranslate nohighlight">\(y_{n+1}\)</span>:</p>
 <div class="cell docutils container">
@@ -912,16 +908,14 @@ k_1=f_2(x_n,y_n)=0.2y_n-0.01y_n^2.
 \[
 \int{\frac{\rm{d}x}{x\left(a+bx\right)}}=\frac{1}{a}\ln{\left|\frac{a+bx}{x}\right|}+c,
 \]</div>
-<p>we can therefore find:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>we can therefore find:
+$<span class="math notranslate nohighlight">\(
 y(t)=\left({5e^{\dfrac{-(t+c)}{5}}+0.05}\right)^{-1}, 
-\]</div>
-<p>with a contant of integration</p>
-<div class="math notranslate nohighlight">
-\[
+\)</span>$</p>
+<p>with a contant of integration
+$<span class="math notranslate nohighlight">\(
 c=-5\ln{\left(\frac{0.14\exp{(400)}}{6}\right)}.
-\]</div>
+\)</span>$</p>
 <p>The plot below again shows the RK4 numerical approximation, <span class="math notranslate nohighlight">\(y_n\)</span> (circles) and the analytical solution to the non-linear population equation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1064,18 +1058,16 @@ c=-5\ln{\left(\frac{0.14\exp{(400)}}{6}\right)}.
 \[ 
 y^{'}=0.2y-0.01y^2+\sin(2\pi t), \ \ (2000 \leq t \leq 2020), 
 \]</div>
-<p>with the initial condition,</p>
-<div class="math notranslate nohighlight">
-\[
+<p>with the initial condition,
+$<span class="math notranslate nohighlight">\(
 y(2000)=6.
-\]</div>
+\)</span>$</p>
 <div class="section" id="id3">
 <h3>Implementing RK4<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>As with the previous cases, lets express the right hand side of the ODE as a function</p>
-<div class="math notranslate nohighlight">
-\[
+<p>As with the previous cases, lets express the right hand side of the ODE as a function
+$<span class="math notranslate nohighlight">\(
 f_3(x,y)=0.2y-0.01y^2+\sin(2\pi x),
-\]</div>
+\)</span>$</p>
 <p>Once again, we could mathematically calculate expressions for <span class="math notranslate nohighlight">\(k_1\rightarrow k_4\)</span>.
 This time though, you can see that <span class="math notranslate nohighlight">\(f_3(x,y)\)</span> now contains terms that depend on <span class="math notranslate nohighlight">\(y\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(t\)</span>!</p>
 <p>Now that we’re more familiar with how to implement RK4 numerically, we’ll simply move on to define our function representing <span class="math notranslate nohighlight">\(f_3(x,y)\)</span> and let the code evaluate the coefficients:</p>
